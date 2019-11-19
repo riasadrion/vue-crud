@@ -18,7 +18,8 @@ class Post extends JsonResource
         return [
         'id' => $this->id,
         'title' => $this->title,
-        'description' => $this->description
+        'description' => $this->description,
+        'created_at' => $this->created_at->timezone('Asia/Dhaka')->format('h:i a')
         ];
     }
 }

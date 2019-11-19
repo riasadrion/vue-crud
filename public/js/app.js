@@ -1923,6 +1923,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -19784,6 +19786,12 @@ var render = function() {
                     _c("td", [_vm._v(_vm._s(post.description))]),
                     _vm._v(" "),
                     _c("td", [
+                      _c("p", { staticClass: "text-muted" }, [
+                        _vm._v(_vm._s(post.created_at))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
                       _c(
                         "button",
                         {
@@ -19845,6 +19853,8 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Title")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Details")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Created at")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Options")])
       ])

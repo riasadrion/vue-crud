@@ -29,6 +29,7 @@
                                 <tr>
                                     <th scope="col">Title</th>
                                     <th scope="col">Details</th>
+                                    <th scope="col">Created at</th>
                                     <th scope="col">Options</th>
                                 </tr>
                             </thead>
@@ -36,6 +37,7 @@
                                 <tr v-for="post in posts" v-bind:key="post.id">
                                     <td>{{ post.title }}</td>
                                     <td>{{ post.description }}</td>
+                                    <td><p class="text-muted">{{ post.created_at }}</p></td>
                                     <td>
                                         <button @click="editPost(post)" class="btn btn-warning btn-sm"href="#">Edit</button>
                                         <button @click="deletePost(post.id)" class="btn btn-danger btn-sm"href="#">Delete</button>

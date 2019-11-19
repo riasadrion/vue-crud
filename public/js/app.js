@@ -1968,7 +1968,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       if (confirm('Are you sure?')) {
-        fetch("api/posts/".concat(id), {
+        fetch("api/post/".concat(id), {
           method: 'delete'
         }).then(function (res) {
           return res.json();
@@ -1981,7 +1981,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       if (this.edit === false) {
-        fetch('api/posts', {
+        fetch('api/post', {
           method: 'post',
           body: JSON.stringify(this.post),
           headers: {
@@ -1997,32 +1997,32 @@ __webpack_require__.r(__webpack_exports__);
         })["catch"](function (err) {
           return console.log(err);
         });
-      } else {}
+      } else {
+        // Update
+        fetch('api/post', {
+          method: 'put',
+          body: JSON.stringify(this.post),
+          headers: {
+            'content-type': 'application/json'
+          }
+        }).then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          _this3.post.title = '';
+          _this3.post.description = '';
+
+          _this3.fetchPosts();
+        })["catch"](function (err) {
+          return console.log(err);
+        });
+      }
     },
     editPost: function editPost(post) {
-      var _this4 = this;
-
       this.edit = true;
       this.post.id = post.id;
       this.post.id = post.id;
       this.post.title = post.title;
       this.post.description = post.description;
-      fetch('api/posts/15', {
-        method: 'put',
-        body: JSON.stringify(this.post),
-        headers: {
-          'content-type': 'application/json'
-        }
-      }).then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this4.post.title = '';
-        _this4.post.description = '';
-
-        _this4.fetchPosts();
-      })["catch"](function (err) {
-        return console.log(err);
-      });
     }
   },
   mounted: function mounted() {
@@ -19832,7 +19832,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-success", attrs: { type: "submit" } },
-        [_vm._v("Create")]
+        [_vm._v("Save")]
       )
     ])
   },
@@ -32199,8 +32199,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Xampp-7.3\htdocs\vue-crud\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Xampp-7.3\htdocs\vue-crud\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\xampp-7.3\htdocs\vue-crud\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\xampp-7.3\htdocs\vue-crud\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

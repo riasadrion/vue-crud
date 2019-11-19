@@ -19,7 +19,7 @@
                         </div>
 
                         <div class="form-group">
-                          <button type="submit" class="btn btn-success">Create</button>
+                          <button type="submit" class="btn btn-success">Save</button>
                         </div>
 
                     </form>
@@ -94,7 +94,7 @@ export default {
         
         deletePost(id){
             if(confirm('Are you sure?')){
-                fetch(`api/posts/${id}`, {
+                fetch(`api/post/${id}`, {
                     method: 'delete'
                 })
                 .then(res => res.json())
@@ -104,9 +104,9 @@ export default {
             }
         },
 
-        addPost(){
+        addPost() {
             if(this.edit === false) {
-                fetch('api/posts', {
+                fetch('api/post', {
                     method: 'post',
                     body: JSON.stringify(this.post),
                     headers: {
@@ -120,19 +120,10 @@ export default {
                     this.fetchPosts();
                 })
                 .catch(err => console.log(err));
-            }else{
-                
-            }
-        },
 
-        editPost(post){
-            this.edit = true;
-            this.post.id = post.id;
-            this.post.id = post.id;
-            this.post.title = post.title;
-            this.post.description = post.description;
-            
-            fetch('api/posts/15', {
+            } else {
+                // Update
+                fetch('api/post', {
                     method: 'put',
                     body: JSON.stringify(this.post),
                     headers: {
@@ -146,6 +137,14 @@ export default {
                     this.fetchPosts();
                 })
                 .catch(err => console.log(err));
+              }
+            },
+        editPost(post){
+            this.edit = true;
+            this.post.id = post.id;
+            this.post.id = post.id;
+            this.post.title = post.title;
+            this.post.description = post.description;
         }
 
     },

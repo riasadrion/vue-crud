@@ -1,58 +1,49 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-use App\Post;
 use App\Http\Requests;
+use App\Post;
 use App\Http\Resources\Post as PostResource;
-
 class PostsController extends Controller
 {
 
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
+        // Get articles
+        $posts = Post::paginate(15);
+        // Return collection of articles as a resource
         return PostResource::collection($posts);
     }
-
-    public function create()
-    {
-        //
-    }
-
+ 
     public function store(Request $request)
     {
-        $post = new Post;
+        $post = $request->isMethod('put') ? Post::findOrFail($request->id) : new Post;
 
-        $post->title = request('title');
-        $post->description = request('description');
-
-        if($post->save()){
+        $post->id = $request->input('id');
+        $post->title = $request->input('title');
+        $post->description = $request->input('description');
+        
+        if($post->save()) {
             return new PostResource($post);
-        }else{
-            exit("error");
         }
-
+        
     }
-
-    public function show(Post $post)
+ 
+    public function show($id)
     {
+        // Get article
+        $post = Post::findOrFail($id);
+        // Return single article as a resource
         return new PostResource($post);
     }
 
-    public function update(Post $post)
+    public function destroy($id)
     {
-        $post->title = request('title');
-        $post->description = request('description');
-
-        $post->save();
-    }
-
-    public function destroy(Post $post)
-    {  
-        if($post->delete()){
-        return new PostResource($post);
-       }
+        // Get article
+        $post = Post::findOrFail($id);
+        if($post->delete()) {
+            return new PostResource($post);
+        }    
     }
 }
+

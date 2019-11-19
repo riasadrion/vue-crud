@@ -18,7 +18,7 @@
 <div class="wrapper" id="app">
     <div class="container">
         <div class="row">
-         <router-view></router-view>
+         <posts></posts>
         </div>
     </div>
 </div>
